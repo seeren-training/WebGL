@@ -8,8 +8,10 @@ module.exports = {
     './src/app.scss',
   ],
   output: {
-    filename: `${bundleName}.js`,
     path: `${__dirname}/dist`,
+    filename: `${bundleName}.js`,
+    globalObject: 'this',
+    assetModuleFilename: 'assets/[name][ext]',
   },
   module: {
     rules: [
@@ -19,35 +21,45 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
+        test: /\.(css|scss)$/,
         use: [
-            process.env.NODE_ENV !== "production" ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
+          'production' !== process.env.NODE_ENV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
         test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'file-loader',
-        
+        type: 'asset/resource',
       },
       {
-          test: /\.glsl$/,
-          exclude: /node_modules/,
-          use: 'raw-loader',
+        test: /\.glsl$/,
+        exclude: /node_modules/,
+        use: 'raw-loader',
       },
+    ],
+  },
+  watchOptions: {
+    ignored: [
+      '/node_modules/',
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: './index.html'
+      template: './src/index.html'
     }),
     new MiniCssExtractPlugin({
       filename: `${bundleName}.css`
     })
   ],
+  infrastructureLogging: {
+    level: 'error',
+  },
   devServer: {
-    contentBase: './',
+    static: './src/',
+    https: false,
+    host: 'localhost',
+    port: 8080,
+    historyApiFallback: true,
   },
 };
