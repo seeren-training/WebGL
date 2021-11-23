@@ -7,7 +7,7 @@ html {
     body {
         @extend html;
         background-color: rgb(240, 240, 240);
-        canvas {
+        #webgl {
             height: 90vh;
             width: 90vw;
             margin: 5vh 5vw;
