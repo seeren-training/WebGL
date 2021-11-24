@@ -22,6 +22,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "dat.gui": "latest",
     "three": "latest"
   }
 }
