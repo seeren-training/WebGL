@@ -23,6 +23,7 @@ export class ObejctMatrixScene extends Scene {
         this.add(pivot);
         this.gui && (this.#gui(plane, 'Plane') || this.#gui(pivot, 'Pivot'));
     }
+
     /**
      * @param {Object3D} object3D 
      * @param {String} name 
