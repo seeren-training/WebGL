@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const bundleName = 'webgl';
 
 module.exports = {
@@ -50,6 +52,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: `${bundleName}.css`
+    }),
+    new webpack.DefinePlugin({
+      'process.env': `'${process.env.NODE_ENV}'`
     })
   ],
   infrastructureLogging: {
