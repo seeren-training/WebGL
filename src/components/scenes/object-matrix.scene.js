@@ -1,6 +1,7 @@
 import { DoubleSide, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneGeometry } from 'three';
 
 import { AnimateEvent } from '../../shared/events/animate.event';
+import { PositionGui } from '../../shared/gui/position.gui';
 import { Scene } from './scene';
 
 export class ObejctMatrixScene extends Scene {
@@ -28,16 +29,13 @@ export class ObejctMatrixScene extends Scene {
      * @param {Object3D} object3D 
      * @param {String} name 
      */
-    #gui (object3D, name) {
+    #gui(object3D, name) {
         const subject = this.gui.addFolder(name);
         const rotation = subject.addFolder('rotation');
         rotation.add(object3D.rotation, 'x', 0, Math.PI * 2);
         rotation.add(object3D.rotation, 'y', 0, Math.PI * 2);
         rotation.add(object3D.rotation, 'z', 0, Math.PI * 2);
-        const position = subject.addFolder('position');
-        position.add(object3D.position, 'x', -4, 4);
-        position.add(object3D.position, 'y', -4, 4);
-        position.add(object3D.position, 'z', -4, 4);
+        new PositionGui(subject.addFolder('position'), object3D);
     }
 
 }
