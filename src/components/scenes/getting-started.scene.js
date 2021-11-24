@@ -18,7 +18,7 @@ export class GettingStartedScene extends Scene {
         this.animate.attach(() => {
             cube.rotation.x += .01;
             cube.rotation.y += .01;
-        })
+        });
         this.gui && this.#gui(animate);
         camera.position.set(0, 2, 5);
         camera.lookAt(cube.position);
