@@ -12,9 +12,9 @@ export class Scene extends ThreeScene {
     #animate;
 
     /**
-     * @type {GUI}
+     * @type {GUI|null}
      */
-    #gui;
+    #gui = null;
 
     /**
      * @param {AnimateEvent} animate 
